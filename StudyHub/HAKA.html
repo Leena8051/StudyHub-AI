@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>StudyHub</title>
+
+<style>
+
+/* LAYOUT */
+body{
+margin:0;
+font-family:Inter,sans-serif;
+background:#f3f4f6;
+}
+
+
+.sidebar{
+width:260px;
+height:100vh;
+background:white;
+border-right:1px solid #e5e7eb;
+position:fixed;
+left:0;
+top:0;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+
+.top{ padding:20px; }
+
+.logo{
+display:flex;
+gap:12px;
+margin-bottom:30px;
+}
+
+.logo-icon{
+width:48px;
+height:48px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:22px;
+}
+
+.logo-text{ font-weight:bold; font-size:20px; }
+.logo-sub{ font-size:14px; color:#6b7280; }
+
+.menu-item{
+padding:12px;
+border-radius:10px;
+cursor:pointer;
+margin-bottom:5px;
+display:flex;
+justify-content:space-between;
+}
+
+.menu-item:hover{ background:#f3f4f6; }
+
+.active{
+background:#ede9fe;
+color:#6366f1;
+}
+
+.bottom{
+padding:20px;
+border-top:1px solid #e5e7eb;
+}
+
+.badge{
+background:red;
+color:white;
+padding:2px 8px;
+border-radius:20px;
+font-size:12px;
+}
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.title{
+font-size:28px;
+font-weight:bold;
+}
+
+.subtitle{ color:#6b7280; }
+
+/* BUTTONS */
+.btn{
+padding:10px 16px;
+border-radius:8px;
+border:none;
+cursor:pointer;
+}
+
+.btn-course{
+background:#6366f1;
+color:white;
+}
+
+.btn-task{
+background:white;
+border:1px solid #ddd;
+}
+
+/* CARDS */
+.cards{
+display:flex;
+gap:20px;
+margin-top:20px;
+}
+.method-card{
+  padding:15px;
+  border-radius:12px;
+  background:#f3f4f6;
+  cursor:pointer;
+  transition:0.3s;
+}
+.method-card.active{
+  background:#6366f1;
+  color:white;
+}
+
+.card{
+flex:1;
+padding:20px;
+border-radius:16px;
+color:white;
+}
+
+.card1{background:linear-gradient(135deg,#6366f1,#4f46e5);}
+.card2{background:linear-gradient(135deg,#a855f7,#6366f1);}
+.card3{background:linear-gradient(135deg,#f97316,#ea580c);}
+.card4{background:linear-gradient(135deg,#ef4444,#e11d48);}
+
+
+/*ADD COURSE AND TASK MODALS*/
+
+/* ========================= */
+/* NEW ADD COURSE MODAL UI  */
+/* ========================= */
+
+.course-modal-content{
+  background:white;
+  width:700px;
+  padding:30px;
+  border-radius:16px;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+.course-modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.course-row{
+  display:flex;
+  gap:20px;
+}
+
+.course-field{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.course-field input,
+.course-field select{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  font-size:14px;
+}
+
+.color-picker{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+}
+
+.color-option{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  cursor:pointer;
+  border:3px solid transparent;
+}
+
+.color-option.active{
+  border:3px solid #6366f1;
+}
+
+/* ================= NEW TASK MODAL UI ================= */
+
+.task-modal-content{
+  background:white;
+  width:650px;
+  padding:30px;
+  border-radius:18px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.task-modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.task-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.task-field input,
+.task-field select,
+.task-field textarea{
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  font-size:15px;
+  outline:none;
+  transition:0.2s;
+}
+
+.task-field input:focus,
+.task-field select:focus,
+.task-field textarea:focus{
+  border:1px solid #6366f1;
+  background:white;
+}
+
+.task-field textarea{
+  resize:none;
+  height:110px;
+}
+
+.task-row{
+  display:flex;
+  gap:20px;
+}
+
+.task-modal-buttons{
+  display:flex;
+  justify-content:flex-end;
+  gap:15px;
+  margin-top:10px;
+}
+
+/*COURSE MODAL*/ 
+.course-modal-buttons{
+  display:flex;
+  justify-content:flex-end;
+  gap:15px;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+padding:25px;
+border-radius:16px;
+width:400px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.close-btn{
+cursor:pointer;
+font-size:18px;
+}
+
+.modal-input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+width:100%;
+}
+
+.modal-buttons{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:10px;
+}
+
+.course-menu{
+cursor:pointer;
+font-size:18px;
+}
+
+/* LOWER */
+.lower{
+display:flex;
+gap:20px;
+margin-top:20px;
+}
+
+.box{
+flex:1;
+background:white;
+padding:20px;
+border-radius:16px;
+}
+
+/* ENERGY */
+.energy{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.energy-btn{
+padding:15px;
+background:#f3f4f6;
+border-radius:10px;
+cursor:pointer;
+}
+
+.energy-btn.selected{
+background:#6366f1;
+color:white;
+}
+
+/* PROGRESS */
+.progress{
+font-size:32px;
+font-weight:bold;
+color:#6366f1;
+}
+
+/* WEEK */
+.days{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.day{
+padding:10px;
+background:#f3f4f6;
+border-radius:10px;
+cursor:pointer;
+}
+
+.day.active{
+background:#6366f1;
+color:white;
+}
+
+/* UPCOMING TASKS */
+.tasks-box{
+margin-top:20px;
+background:white;
+padding:20px;
+border-radius:16px;
+}
+
+.task-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
+border-radius:12px;
+background:#f9fafb;
+margin-top:10px;
+transition:0.3s;
+}
+
+.task-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.task-item input{
+width:18px;
+height:18px;
+cursor:pointer;
+}
+
+.priority{
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.high{
+background:#fde68a;
+color:#b45309;
+}
+
+.medium{
+background:#bfdbfe;
+color:#1e40af;
+}
+
+.urgent{
+background:#fecaca;
+color:#991b1b;
+}
+
+.days-left{
+font-size:13px;
+color:#6b7280;
+margin-left:10px;
+}
+/* =============================== */
+/* COURSES PAGE NEW */
+/* =============================== */
+
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+margin-left:260px;
+padding:30px;
+background:#f9fafb;
+min-height:100vh;
+}
+
+
+
+
+
+.courses-title{
+font-size:32px;
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.courses-sub{
+color:#6b7280;
+margin-bottom:25px;
+}
+
+.courses-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.search-box{
+flex:1;
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-right:15px;
+}
+
+.filter-box{
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-right:15px;
+}
+
+.courses-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.course-card-new{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+.course-header-new{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.course-icon-new{
+width:70px;
+height:70px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:bold;
+font-size:22px;
+}
+
+/* ================= CLASS SCHEDULE UI ================= */
+
+.schedule-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:#f3f4f6;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+
+.schedule-day,
+.schedule-time,
+.schedule-location{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  background:white;
+  font-size:14px;
+}
+
+.schedule-day{
+  min-width:130px;
+}
+
+.schedule-time{
+  width:130px;
+}
+
+.schedule-location{
+  flex:1;
+}
+
+.delete-slot{
+  cursor:pointer;
+  color:#ef4444;
+  font-size:18px;
+}
+
+
+.progress-bar-new{
+height:8px;
+background:#e5e7eb;
+border-radius:20px;
+margin-top:8px;
+}
+
+.progress-fill-new{
+height:100%;
+width:0%;
+background:#6366f1;
+border-radius:20px;
+}
+
+.view-details{
+color:#6366f1;
+font-weight:bold;
+cursor:pointer;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<div class="top">
+
+<div class="logo">
+<div class="logo-icon">🎓</div>
+<div>
+<div class="logo-text">StudyHub</div>
+<div class="logo-sub">AI Study Platform</div>
+</div>
+</div>
+<div class="menu-item active" onclick="showDashboard()">Dashboard ✨</div>
+<div class="menu-item" onclick="showCourses()">Courses</div>
+
+<div class="menu-item" onclick="openSchedule()">Schedule</div>
+<div class="menu-item" onclick="openStudy()">Study</div>
+
+</div>
+
+<div class="bottom">
+<div class="menu-item">
+Notifications
+<div class="badge" id="notifCount">3</div>
+</div>
+<div class="menu-item">Settings</div>
+</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="header">
+<div>
+<div class="title">Welcome back, Ali! 👋</div>
+<div class="subtitle" id="date"></div>
+</div>
+
+<div>
+<button class="btn btn-task" onclick="addTask()">+ Add Task</button>
+<button class="btn btn-course" onclick="addCourse()">+ Add Course</button>
+</div>
+</div>
+
+<!-- TOP CARDS -->
+<div class="cards">
+<div class="card card1">
+<h1 id="courseCount">0</h1>
+Active Courses
+</div>
+
+<div class="card card2">
+<h1 id="studyHours">0h</h1>
+Study Hours
+</div>
+
+<div class="card card3">
+<h1 id="tasksDue">4</h1>
+Tasks Due
+</div>
+
+<div class="card card4">
+<h1 id="streak">0 days</h1>
+Study Streak
+</div>
+
+</div>
+
+
+
+<!-- LOWER -->
+<div class="lower">
+
+<div class="box">
+<h3>How's your energy today?</h3>
+<div class="energy">
+<div class="energy-btn" onclick="setEnergy(this,1)">1</div>
+<div class="energy-btn" onclick="setEnergy(this,2)">2</div>
+<div class="energy-btn" onclick="setEnergy(this,3)">3</div>
+<div class="energy-btn" onclick="setEnergy(this,4)">4</div>
+<div class="energy-btn" onclick="setEnergy(this,5)">5</div>
+</div>
+</div>
+
+<div class="box">
+<h3>Today's Progress</h3>
+<div class="progress" id="progress">0%</div>
+</div>
+
+<div class="box">
+<h3>This Week</h3>
+<div class="days">
+
+</div>
+</div>
+
+</div>
+
+<!-- ADD COURSE MODAL -->
+<div id="courseModal" class="modal">
+    <div class="course-modal-content">
+  
+      <!-- Header -->
+      <div class="course-modal-header">
+        <h2>Add New Course</h2>
+        <span onclick="closeCourseModal()" class="close-btn">✕</span>
+      </div>
+  
+      <!-- Row 1 -->
+      <div class="course-row">
+        <div class="course-field">
+          <label>Course Name *</label>
+          <input id="courseNameInput" placeholder="Introduction to Computer Science">
+        </div>
+  
+        <div class="course-field">
+          <label>Course Code</label>
+          <input id="courseCodeInput" placeholder="CS101">
+        </div>
+      </div>
+  
+      <!-- Row 2 -->
+      <div class="course-row">
+        <div class="course-field">
+          <label>Difficulty Level</label>
+          <select id="courseDifficultyInput">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+  
+        <div class="course-field">
+          <label>Instructor</label>
+          <input placeholder="Dr. Smith">
+        </div>
+      </div>
+  
+      <!-- Color Picker -->
+      <div>
+        <label>Color</label>
+        <div class="color-picker">
+          <div class="color-option active" style="background:#6366f1;"></div>
+          <div class="color-option" style="background:#8b5cf6;"></div>
+          <div class="color-option" style="background:#ec4899;"></div>
+          <div class="color-option" style="background:#f43f5e;"></div>
+          <div class="color-option" style="background:#f97316;"></div>
+          <div class="color-option" style="background:#eab308;"></div>
+          <div class="color-option" style="background:#22c55e;"></div>
+          <div class="color-option" style="background:#14b8a6;"></div>
+          <div class="color-option" style="background:#0ea5e9;"></div>
+        </div>
+      </div>
+
+      <!-- ================= CLASS SCHEDULE SECTION ================= -->
+<div style="margin-top:10px;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+      <h3 style="margin:0;">Class Schedule</h3>
+      <span onclick="addTimeSlot()" style="cursor:pointer;font-weight:500;">
+        + Add Time Slot
+      </span>
+    </div>
+  
+    <div id="scheduleContainer">
+  
+      <div class="schedule-row">
+        
+        <select class="schedule-day">
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+  
+        <input type="time" class="schedule-time">
+        <span style="color:#6b7280;">to</span>
+        <input type="time" class="schedule-time">
+  
+        <input type="text" placeholder="Location" class="schedule-location">
+  
+        <span class="delete-slot" onclick="removeTimeSlot(this)">🗑️</span>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
+      <!-- Footer Buttons -->
+      <div class="course-modal-buttons">
+        <button onclick="closeCourseModal()" class="btn btn-task">Cancel</button>
+        <button onclick="createCourse()" class="btn btn-course">Add Course</button>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+ <!-- =================  ADD TASK MODAL ================= -->
+<div id="taskModal" class="modal">
+    <div class="task-modal-content">
+  
+      <!-- Header -->
+      <div class="task-modal-header">
+        <h2>Add New Task</h2>
+        <span onclick="closeTaskModal()" class="close-btn">✕</span>
+      </div>
+  
+      <!-- Task Title -->
+      <div class="task-field">
+        <label>Task Title *</label>
+        <input id="taskTitleInput" placeholder="Complete Chapter 5 exercises">
+      </div>
+  
+      <!-- Description -->
+      <div class="task-field">
+        <label>Description</label>
+        <textarea id="taskDescInput" placeholder="Add details about this task..."></textarea>
+      </div>
+  
+      <!-- Course + Task Type -->
+      <div class="task-row">
+        <div class="task-field">
+          <label>Course</label>
+          <select id="taskCourseInput"></select>
+        </div>
+  
+        <div class="task-field">
+          <label>Task Type</label>
+          <select id="taskTypeInput">
+            <option>Assignment</option>
+            <option>Quiz</option>
+            <option>Exam</option>
+            <option>Project</option>
+            <option>Reading</option>
+            <option>Study Session</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Due Date + Priority -->
+      <div class="task-row">
+        <div class="task-field">
+          <label>Due Date *</label>
+          <input type="datetime-local" id="taskDateInput">
+        </div>
+  
+        <div class="task-field">
+          <label>Priority</label>
+          <select id="taskPriorityInput">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="task-modal-buttons">
+        <button onclick="closeTaskModal()" class="btn btn-task">Cancel</button>
+        <button onclick="createTask()" class="btn btn-course">Add Task</button>
+      </div>
+  
+    </div>
+  </div>
+  
+     
+  
+<!-- UPCOMING TASKS -->
+<div class="tasks-box">
+<h3>Upcoming Tasks</h3>
+
+
+
+
+
+</div>
+
+</div>
+
+<!-- ================= COURSES PAGE ================= -->
+
+<div class="page" id="coursesPage">
+
+<div class="courses-title">My Courses</div>
+<div class="courses-sub">
+Manage and track your course progress
+</div>
+
+<div class="courses-top">
+    <input class="search-box" placeholder="Search courses...">
+    <select class="filter-box">
+        <option>All Difficulties</option>
+        <option>easy</option>
+        <option>medium</option>
+        <option>hard</option>
+        <option>very hard</option>
+    </select>
+    <button class="btn btn-course" onclick="addCourse()">+ Add Course</button>
+</div>
+
+
+<div class="courses-grid" id="coursesGrid"></div>
+
+
+</div>
+</div>
+<!-- ================= CS DETAILS PAGE ================= -->
+
+<div class="page" id="csDetailsPage">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
+
+<div style="display:flex;align-items:center;gap:20px;">
+<span style="cursor:pointer;font-size:22px;" onclick="showCourses()">←</span>
+
+<div class="course-icon-new" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">
+CS
+</div>
+
+<div>
+<h2>Introduction to Computer Science</h2>
+<p>CS101 <span class="priority medium">medium</span></p>
+</div>
+</div>
+
+<button class="btn btn-course">▶ Start Studying</button>
+
+</div>
+
+
+<!-- STATS -->
+<div class="cards">
+
+<div class="box">
+<h2>0.0h</h2>
+<p>Study Time</p>
+</div>
+
+<div class="box">
+<h2>0/0</h2>
+<p>Tasks Done</p>
+</div>
+
+<div class="box">
+<h2>0%</h2>
+<p>Syllabus</p>
+</div>
+
+<div class="box">
+<h2>0</h2>
+<p>Sessions</p>
+</div>
+
+</div>
+
+
+<!-- CONTENT -->
+<div style="display:flex;gap:25px;margin-top:30px;">
+
+<!-- SYLLABUS -->
+<div class="box" style="flex:1;">
+<h3>Syllabus</h3>
+
+<div class="task-item">Introduction to Programming</div>
+<div class="task-item">Control Structures</div>
+<div class="task-item">Functions</div>
+<div class="task-item">Arrays and Lists</div>
+
+<p style="margin-top:20px;">Progress 0%</p>
+<div class="progress-bar-new">
+<div class="progress-fill-new"></div>
+</div>
+</div>
+
+
+<!-- TASKS -->
+<div class="box" style="flex:1;">
+<h3>Tasks</h3>
+<p style="margin-top:40px;color:#6b7280;text-align:center;">
+No tasks for this course
+</p>
+</div>
+
+</div>
+
+
+<div style="margin-top:40px;">
+
+<h2 style="margin-bottom:20px;">Class Schedule</h2>
+
+<div style="display:flex;gap:20px;flex-wrap:wrap;">
+
+<div class="box" style="min-width:250px;">
+<h3>Monday</h3>
+<p>09:00 - 10:30</p>
+<p>📍 Room 201</p>
+</div>
+
+<div class="box" style="min-width:250px;">
+<h3>Wednesday</h3>
+<p>09:00 - 10:30</p>
+<p>📍 Room 201</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= ENGLISH DETAILS PAGE ================= -->
+
+<div class="page" id="engDetailsPage">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
+
+<div style="display:flex;align-items:center;gap:20px;">
+<span style="cursor:pointer;font-size:22px;" onclick="showCourses()">←</span>
+
+<div class="course-icon-new" style="background:#22c55e;">
+EN
+</div>
+
+<div>
+<h2>English Composition</h2>
+<p>ENG102 <span class="priority medium">easy</span></p>
+</div>
+</div>
+
+<button class="btn btn-course">▶ Start Studying</button>
+
+</div>
+
+
+<!-- STATS -->
+<div class="cards">
+
+<div class="box">
+<h2>0.0h</h2>
+<p>Study Time</p>
+</div>
+
+<div class="box">
+<h2>0/0</h2>
+<p>Tasks Done</p>
+</div>
+
+<div class="box">
+<h2>0%</h2>
+<p>Syllabus</p>
+</div>
+
+<div class="box">
+<h2>0</h2>
+<p>Sessions</p>
+</div>
+
+</div>
+
+
+<!-- CONTENT -->
+<div style="display:flex;gap:25px;margin-top:30px;">
+
+<!-- SYLLABUS -->
+<div class="box" style="flex:1;">
+<h3>Syllabus</h3>
+
+<div class="task-item">Essay Structure</div>
+<div class="task-item">Thesis Statements</div>
+<div class="task-item">Academic Vocabulary</div>
+<div class="task-item">Research & Citations</div>
+<div class="task-item">Critical Reading</div>
+
+<p style="margin-top:20px;">Progress 0%</p>
+<div class="progress-bar-new">
+<div class="progress-fill-new"></div>
+</div>
+</div>
+
+
+<!-- TASKS -->
+<div class="box" style="flex:1;">
+<h3>Tasks</h3>
+<p style="margin-top:40px;color:#6b7280;text-align:center;">
+No tasks for this course
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CALCULUS DETAILS PAGE ================= -->
+
+<div class="page" id="calcDetailsPage">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
+
+<div style="display:flex;align-items:center;gap:20px;">
+<span style="cursor:pointer;font-size:22px;" onclick="showCourses()">←</span>
+
+<div class="course-icon-new" style="background:#ef4444;">
+MA
+</div>
+
+<div>
+<h2>Calculus I</h2>
+<p>MATH201 <span class="priority high">hard</span></p>
+</div>
+</div>
+
+<button class="btn btn-course">▶ Start Studying</button>
+
+</div>
+
+
+<!-- STATS -->
+<div class="cards">
+
+<div class="box">
+<h2>0.0h</h2>
+<p>Study Time</p>
+</div>
+
+<div class="box">
+<h2>0/0</h2>
+<p>Tasks Done</p>
+</div>
+
+<div class="box">
+<h2>0%</h2>
+<p>Syllabus</p>
+</div>
+
+<div class="box">
+<h2>0</h2>
+<p>Sessions</p>
+</div>
+
+</div>
+
+
+<!-- CONTENT -->
+<div style="display:flex;gap:25px;margin-top:30px;">
+
+<div class="box" style="flex:1;">
+<h3>Syllabus</h3>
+
+<div class="task-item">Limits and Continuity</div>
+<div class="task-item">Derivatives</div>
+<div class="task-item">Applications of Derivatives</div>
+<div class="task-item">Integrals</div>
+<div class="task-item">Fundamental Theorem of Calculus</div>
+
+<p style="margin-top:20px;">Progress 0%</p>
+<div class="progress-bar-new">
+<div class="progress-fill-new"></div>
+</div>
+</div>
+
+<div class="box" style="flex:1;">
+<h3>Tasks</h3>
+<p style="margin-top:40px;color:#6b7280;text-align:center;">
+No tasks for this course
+</p>
+</div>
+
+</div>
+
+
+<div style="margin-top:40px;">
+<h2 style="margin-bottom:20px;">Class Schedule</h2>
+
+<div style="display:flex;gap:20px;flex-wrap:wrap;">
+
+<div class="box" style="min-width:250px;">
+<h3>Tuesday</h3>
+<p>11:00 - 12:30</p>
+<p>📍 Room 105</p>
+</div>
+
+<div class="box" style="min-width:250px;">
+<h3>Thursday</h3>
+<p>11:00 - 12:30</p>
+<p>📍 Room 105</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- ================= SCHEDULE PAGE ================= -->
+
+<div class="page" id="schedulePage">
+
+<div class="courses-title">Schedule</div>
+<div class="courses-sub">
+Your classes and study plan
+</div>
+
+<!-- MONTH BAR -->
+<div class="box" style="margin-bottom:25px;">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+<span style="cursor:pointer;">‹</span>
+<h3>February 2026</h3>
+<span style="cursor:pointer;">›</span>
+</div>
+
+<div style="display:flex;gap:15px;">
+
+<div class="day">Mon<br><b>9</b></div>
+<div class="day">Tue<br><b>10</b></div>
+<div class="day">Wed<br><b>11</b></div>
+<div class="day">Thu<br><b>12</b></div>
+<div class="day">Fri<br><b>13</b></div>
+<div class="day">Sat<br><b>14</b></div>
+<div class="day active">Sun<br><b>15</b></div>
+
+</div>
+</div>
+
+<!-- CONTENT -->
+<div style="display:flex;gap:25px;flex-wrap:wrap;">
+
+<div class="box" style="flex:1;min-width:300px;">
+<h3>Classes on Sunday</h3>
+<p style="margin-top:40px;color:#6b7280;text-align:center;">
+No classes scheduled
+</p>
+</div>
+
+<div class="box" style="flex:1;min-width:300px;">
+<h3>Tasks Due February 15</h3>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= STUDY ROOM PAGE ================= -->
+
+<div class="page" id="studyPage">
+
+<div class="courses-title">Study Room</div>
+<div class="courses-sub">
+Focus and track your study sessions
+</div>
+
+<div style="display:flex;gap:30px;flex-wrap:wrap;">
+
+<!-- LEFT SIDE -->
+<div class="box" style="flex:2;min-width:400px;">
+
+<h3>Start a Study Session</h3>
+
+<!-- Select Course -->
+<p style="margin-top:20px;">Select Course</p>
+<select id="studyCourse" class="search-box">
+<option value="">Choose a course</option>
+<option value="CS">Computer Science</option>
+<option value="MA">Calculus I</option>
+<option value="EN">English Composition</option>
+</select>
+
+<!-- Study Methods -->
+<p style="margin-top:20px;">Study Method</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:10px;">
+
+<div class="method-card" onclick="selectMethod(this,25)">
+<b>Pomodoro</b>
+<p>25 min work, 5 min break</p>
+</div>
+
+<div class="method-card" onclick="selectMethod(this,90)">
+<b>Deep Work</b>
+<p>90 min focused session</p>
+</div>
+
+<div class="method-card" onclick="selectMethod(this,20)">
+<b>Spaced Review</b>
+<p>20 min review cycles</p>
+</div>
+
+<div class="method-card" onclick="selectMethod(this,30)">
+<b>Active Recall</b>
+<p>30 min practice</p>
+</div>
+
+</div>
+
+<button class="btn btn-course" style="margin-top:25px;width:100%;" onclick="startTimer()">
+▶ Start Studying
+</button>
+
+</div>
+
+<!-- RIGHT SIDE TIMER -->
+<div class="box" style="flex:1;min-width:300px;text-align:center;">
+
+<h3>Focus Mode</h3>
+
+<h1 id="timerDisplay" style="font-size:48px;margin-top:30px;">
+00:00
+</h1>
+
+<button class="btn btn-task" style="margin-top:20px;width:100%;" onclick="stopTimer()">
+End Session
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+  
+
+document.getElementById("date").innerText =
+new Date().toDateString()
+
+let courses=0
+let tasks=4
+let progress=0
+let courseList = [
+    {
+        id: Date.now() + 1,
+        name: "Introduction to Computer Science",
+        code: "CS101",
+        difficulty: "medium",
+        color: "linear-gradient(135deg,#6366f1,#8b5cf6)"
+    },
+    {
+        id: Date.now() + 2,
+        name: "Calculus I",
+        code: "MATH201",
+        difficulty: "hard",
+        color: "linear-gradient(135deg,#ef4444,#e11d48)"
+    },
+    {
+        id: Date.now() + 3,
+        name: "English Composition",
+        code: "ENG102",
+        difficulty: "easy",
+        color: "linear-gradient(135deg,#22c55e,#16a34a)"
+    }
+];
+let taskList=[];
+
+
+/*COURSES STUFF*/
+
+// Generate initials like CS for "Computer Science"
+function getCourseInitials(name) {
+    return name.split(" ").map(word => word[0].toUpperCase()).join("").slice(0,2);
+}
+
+// Assign a consistent background color based on course code
+function getCourseColor(code) {
+    const colors = [
+        "linear-gradient(135deg,#6366f1,#8b5cf6)",
+        "linear-gradient(135deg,#a855f7,#6366f1)",
+        "linear-gradient(135deg,#f97316,#ea580c)",
+        "linear-gradient(135deg,#ef4444,#e11d48)",
+        "linear-gradient(135deg,#22c55e,#16a34a)"
+    ];
+    let index = code.charCodeAt(0) % colors.length;
+    return colors[index];
+}
+
+function updateCourseCount(){
+
+document.getElementById("courseCount").innerText =
+courseList.length;
+
+}
+function renderCourses() {
+    let grid = document.getElementById("coursesGrid");
+    grid.innerHTML = "";
+
+    courseList.forEach(course => {
+        let card = document.createElement("div");
+        card.className = "course-card-new";
+        card.style.position = "relative"; // needed for the delete icon
+
+        card.innerHTML = `
+        <div class="course-header-new">
+            <div class="course-icon-new" style="background:${course.color};">
+                ${getCourseInitials(course.name)}
+            </div>
+            <div>
+                <h3>${course.name}</h3>
+                <p>${course.code}</p>
+                <span class="priority ${course.difficulty}">${course.difficulty}</span>
+            </div>
+        </div>
+
+        <p style="margin-top:15px;">Progress 0/0 tasks</p>
+        <div class="progress-bar-new">
+            <div class="progress-fill-new"></div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;margin-top:15px;">
+            <span>⏱ 0.0h</span>
+            <span class="view-details" onclick="openCourseDetails('${course.code}')">View Details ></span>
+        </div>
+
+        <span class="delete-course" title="Delete course">🗑️</span>
+        `;
+
+        // Delete button style and hover effect
+        let deleteBtn = card.querySelector(".delete-course");
+        deleteBtn.style.cssText = `
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            display: none;
+            font-size: 18px;
+        `;
+
+        card.addEventListener("mouseenter", () => deleteBtn.style.display = "block");
+        card.addEventListener("mouseleave", () => deleteBtn.style.display = "none");
+
+        deleteBtn.addEventListener("click", () => {
+            if (confirm(`Are you sure you want to delete "${course.name}"?`)) {
+                courseList = courseList.filter(c => c.id !== course.id);
+                renderCourses();
+                updateCourseCount();
+            }
+        });
+
+        grid.appendChild(card);
+    });
+
+    updateCourseCount();
+} 
+
+function addCourse(){
+document.getElementById("courseModal").style.display="flex";
+}
+
+function createCourse() {
+  let name = document.getElementById("courseNameInput").value;
+  let code = document.getElementById("courseCodeInput").value;
+  let difficulty = document.getElementById("courseDifficultyInput").value;
+
+  if(name === "" || code === ""){
+    alert("Fill required fields");
+    return;
+  }
+
+  let course = {
+    id: Date.now(),
+    name,
+    code,
+    difficulty,
+    color: getCourseColor(code)  // <-- assign a background color
+  };
+
+  courseList.push(course);
+  renderCourses();
+  updateCourseCount();
+  closeCourseModal();
+}
+
+
+function openCourseMenu(id){
+
+let action = prompt(
+"Type:\n1 delete\n2 finish"
+);
+
+if(action==="1"){
+
+courseList =
+courseList.filter(c=>c.id!==id);
+
+renderCourses();
+updateCourseCount();
+
+}
+
+if(action==="2"){
+
+courseList =
+courseList.filter(c=>c.id!==id);
+
+renderCourses();
+updateCourseCount();
+
+alert("Course finished 🎉");
+
+}
+
+}
+function openCourseDetails(code) {
+    if(code.startsWith("CS")) openCS();
+    else if(code.startsWith("MATH")) openCalc();
+    else if(code.startsWith("ENG")) openEng();
+    else alert("Details not available");
+}
+
+/*TASK STUFF*/
+function addTask() {
+  const taskCourseSelect = document.getElementById("taskCourseInput");
+
+  // Clear previous options
+  taskCourseSelect.innerHTML = "";
+
+  // Add a default placeholder
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "Select a course";
+  taskCourseSelect.appendChild(placeholder);
+
+  // Populate with existing courses
+  courseList.forEach(course => {
+    const option = document.createElement("option");
+    option.value = course.id;           // store course id
+    option.textContent = course.name;   // show course name
+    taskCourseSelect.appendChild(option);
+  });
+
+  // Show modal
+  document.getElementById("taskModal").style.display = "flex";
+}
+
+
+function createTask() {
+
+let title = document.getElementById("taskTitleInput").value;
+let date = document.getElementById("taskDateInput").value;
+let priority = document.getElementById("taskPriorityInput").value;
+let courseId = document.getElementById("taskCourseInput").value;
+let type = document.getElementById("taskTypeInput").value;
+let desc = document.getElementById("taskDescInput").value;
+
+if (title === "" || date === "" || courseId === "") {
+  alert("Fill all required fields");
+  return;
+}
+
+let course = courseList.find(c => c.id == courseId);
+
+taskList.push({
+  id: Date.now(),
+  title,
+  description: desc,
+  type,
+  date,
+  priority,
+  courseId: course.id,
+  courseName: course.name,
+  done: false
+});
+
+renderTasks();
+closeTaskModal();
+}
+
+
+
+function finishTask(checkbox){
+
+let taskElement =
+checkbox.closest(".task-item");
+
+let id =
+taskElement.dataset.id;
+
+let task =
+taskList.find(t=>t.id==id);
+
+task.done = checkbox.checked;
+
+renderTasks();
+
+}
+
+function renderTasks(){
+
+let box =
+document.querySelector(".tasks-box");
+
+box.innerHTML="<h3>Upcoming Tasks</h3>";
+
+let remaining=0;
+let completed=0;
+taskList.sort((a,b)=> new Date(a.date) - new Date(b.date));
+
+taskList.forEach(task=>{
+
+if(!task.done) remaining++;
+else completed++;
+
+let div = document.createElement("div");
+
+div.className="task-item";
+
+div.dataset.id=task.id;
+
+div.innerHTML = `
+<div class="task-left">
+  <input type="checkbox" ${task.done ? "checked" : ""} onchange="finishTask(this)">
+  ${task.title} <span style="font-size:12px;color:#6b7280;">(${task.courseName})</span>
+</div>
+<div>
+  <span class="priority ${task.priority}">${task.priority}</span>
+</div>
+`;
+
+box.appendChild(div);
+
+});
+
+document.getElementById("tasksDue").innerText=remaining;
+
+let percent =
+taskList.length===0 ? 0 :
+Math.round((completed/taskList.length)*100);
+
+document.getElementById("progress").innerText=
+percent+"%";
+
+}
+
+function closeCourseModal(){
+document.getElementById("courseModal").style.display="none";
+}
+
+function closeTaskModal(){
+document.getElementById("taskModal").style.display="none";
+}
+
+
+function setEnergy(btn,level){
+    
+
+document.querySelectorAll(".energy-btn")
+.forEach(b=>b.classList.remove("selected"))
+
+btn.classList.add("selected")
+
+}
+
+function updateWeek(){
+
+let container =
+document.querySelector(".days");
+
+container.innerHTML="";
+
+let today=new Date();
+
+let start=new Date(today);
+
+start.setDate(today.getDate()-today.getDay());
+
+for(let i=0;i<7;i++){
+
+let d=new Date(start);
+d.setDate(start.getDate()+i);
+
+let div=document.createElement("div");
+
+div.className="day";
+
+if(d.toDateString()===today.toDateString())
+div.classList.add("active");
+
+div.innerHTML=
+d.toLocaleDateString("en-US",{weekday:"short"})
++"<br>"+d.getDate();
+
+container.appendChild(div);
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderCourses();
+    renderTasks();  
+    updateWeek();
+});
+document.addEventListener("click", function(e){
+  if(e.target.classList.contains("color-option")){
+    document.querySelectorAll(".color-option")
+      .forEach(c => c.classList.remove("active"));
+    e.target.classList.add("active");
+  }
+});
+
+/* ================= NAVIGATION ================= */
+
+function hideAllPages(){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+document.querySelector(".main").style.display="none";
+}
+
+function showDashboard(){
+hideAllPages();
+document.querySelector(".main").style.display="block";
+}
+
+function showCourses(){
+hideAllPages();
+document.getElementById("coursesPage").classList.add("active");
+}
+
+function openCS(){
+hideAllPages();
+document.getElementById("csDetailsPage").classList.add("active");
+}
+
+function openCalc(){
+hideAllPages();
+document.getElementById("calcDetailsPage").classList.add("active");
+}
+
+function openEng(){
+hideAllPages();
+document.getElementById("engDetailsPage").classList.add("active");
+}
+
+function openSchedule(){
+hideAllPages();
+document.getElementById("schedulePage").classList.add("active");
+}
+
+function openStudy(){
+hideAllPages();
+document.getElementById("studyPage").classList.add("active");
+}
+
+
+let selectedMinutes = 0;
+let timerInterval;
+let totalSeconds = 0;
+
+function selectMethod(card, minutes){
+  document.querySelectorAll(".method-card").forEach(c => c.classList.remove("active"));
+  card.classList.add("active");
+  selectedMinutes = minutes;
+}
+
+function addTimeSlot(){
+  const container = document.getElementById("scheduleContainer");
+
+  const row = document.createElement("div");
+  row.className = "schedule-row";
+
+  row.innerHTML = `
+    <select class="schedule-day">
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>Saturday</option>
+      <option>Sunday</option>
+    </select>
+
+    <input type="time" class="schedule-time">
+    <span style="color:#6b7280;">to</span>
+    <input type="time" class="schedule-time">
+
+    <input type="text" placeholder="Location" class="schedule-location">
+
+    <span class="delete-slot" onclick="removeTimeSlot(this)">🗑️</span>
+  `;
+
+  container.appendChild(row);
+}
+
+function removeTimeSlot(btn){
+  btn.parentElement.remove();
+}
+
+function startTimer(){
+
+if(selectedMinutes === 0){
+alert("Please select a study method");
+return;
+}
+
+totalSeconds = selectedMinutes * 60;
+
+updateDisplay();
+
+timerInterval = setInterval(() => {
+totalSeconds--;
+
+updateDisplay();
+
+if(totalSeconds <= 0){
+clearInterval(timerInterval);
+alert("Session Complete 🎉");
+}
+
+},1000);
+}
+
+function stopTimer(){
+clearInterval(timerInterval);
+document.getElementById("timerDisplay").innerText = "00:00";
+}
+
+function updateDisplay(){
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = totalSeconds % 60;
+
+if(seconds < 10) seconds = "0" + seconds;
+if(minutes < 10) minutes = "0" + minutes;
+
+document.getElementById("timerDisplay").innerText =
+minutes + ":" + seconds;
+}
+
+
+</script>
+
+</body>
+</html>
