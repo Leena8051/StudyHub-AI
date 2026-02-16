@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>StudyHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -678,7 +681,401 @@ cursor:pointer;
   font-size:14px;
   color:#6b7280;
 }
+/* ===========================
+   STUDY PAGE (NEW UI)
+   =========================== */
 
+#studyPage .study-layout{
+  display:grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+@media (max-width: 980px){
+  #studyPage .study-layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+#studyPage .study-card{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+#studyPage .study-card h3{
+  margin:0 0 14px 0;
+}
+
+#studyPage .study-muted{
+  color:#6b7280;
+  font-size:14px;
+  margin-top:6px;
+}
+
+#studyPage .study-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+#studyPage .study-field{
+  flex:1;
+  min-width:220px;
+}
+
+#studyPage .study-label{
+  display:block;
+  font-size:14px;
+  color:#374151;
+  margin:12px 0 8px;
+  font-weight:600;
+}
+
+#studyPage .study-input,
+#studyPage .study-select,
+#studyPage .study-textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  outline:none;
+  transition:0.2s;
+  font-size:14px;
+}
+
+#studyPage .study-input:focus,
+#studyPage .study-select:focus,
+#studyPage .study-textarea:focus{
+  border-color:#6366f1;
+  background:white;
+}
+
+#studyPage .study-textarea{
+  height:120px;
+  resize:none;
+}
+
+#studyPage .methods-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:10px;
+}
+
+#studyPage .method-card{
+  padding:16px;
+  border-radius:16px;
+  background:#f3f4f6;
+  border:1px solid #e5e7eb;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+#studyPage .method-card:hover{
+  transform: translateY(-2px);
+}
+
+#studyPage .method-card.active{
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  color:white;
+  border-color: transparent;
+}
+
+#studyPage .method-card p{
+  margin:8px 0 0 0;
+  font-size:13px;
+  opacity:0.9;
+}
+
+#studyPage .timer-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-align:center;
+}
+
+#studyPage .timer-big{
+  font-size:54px;
+  margin:10px 0 0 0;
+  letter-spacing:1px;
+}
+
+#studyPage .timer-pill{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+#studyPage .pill{
+  background:#f3f4f6;
+  border:1px solid #e5e7eb;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  color:#374151;
+}
+
+#studyPage .study-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+#studyPage .btn-wide{
+  width:100%;
+}
+
+#studyPage .btn-secondary{
+  background:white;
+  border:1px solid #ddd;
+}
+
+#studyPage .btn-danger{
+  background:#fee2e2;
+  border:1px solid #fecaca;
+  color:#991b1b;
+}
+
+#studyPage .mini-section{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid #eef2ff;
+}
+
+#studyPage .session-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#studyPage .session-item{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  padding:12px 12px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+
+#studyPage .session-item small{
+  color:#6b7280;
+  display:block;
+  margin-top:4px;
+}
+
+body.focus-mode .sidebar{
+  transform: translateX(-270px);
+  transition:0.25s;
+}
+body.focus-mode .main,
+body.focus-mode .page.active{
+  margin-left:0 !important;
+  transition:0.25s;
+}
+
+/* =========================
+   THEME UPGRADE (Aesthetic)
+   ========================= */
+
+/* Soft background + smooth font */
+:root{
+  --bg1:#f6f7ff;
+  --bg2:#f3f4ff;
+  --card: rgba(255,255,255,0.82);
+  --border: rgba(229,231,235,0.9);
+  --text:#111827;
+  --muted:#6b7280;
+  --primary:#6366f1;
+  --primary2:#8b5cf6;
+  --shadow: 0 18px 45px rgba(17,24,39,0.08);
+  --shadow2: 0 10px 24px rgba(17,24,39,0.10);
+  --radius:22px;
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(1200px 800px at 10% 10%, #eef2ff 0%, transparent 60%),
+              radial-gradient(1000px 700px at 90% 20%, #fce7f3 0%, transparent 55%),
+              radial-gradient(900px 600px at 50% 90%, #e0f2fe 0%, transparent 55%),
+              linear-gradient(180deg,var(--bg1),var(--bg2));
+  color: var(--text);
+}
+
+/* nicer scroll */
+*{ scroll-behavior:smooth; }
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-thumb{
+  background: rgba(99,102,241,0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track{ background: transparent; }
+
+/* Sidebar glass style */
+.sidebar{
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(229,231,235,0.75);
+}
+
+.logo-text{
+  font-family: Poppins, Inter, sans-serif;
+  letter-spacing:-0.4px;
+}
+
+/* Menu: smoother hover */
+.menu-item{
+  border:1px solid transparent;
+}
+.menu-item:hover{
+  background: linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;
+  border-color: rgba(255,255,255,0.35);
+  transform: translateY(-1px);
+}
+.menu-item{ transition:0.22s; }
+
+/* Main cards become glass */
+.box, .tasks-box, .course-card-new{
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+}
+
+/* header title */
+.title{
+  font-family:Poppins, Inter, sans-serif;
+  letter-spacing:-0.6px;
+}
+
+/* Buttons: modern */
+.btn{
+  border-radius: 14px;
+  padding: 11px 16px;
+  transition: 0.2s;
+  font-weight:600;
+}
+.btn-course{
+  background: linear-gradient(135deg,var(--primary),var(--primary2));
+  box-shadow: 0 10px 22px rgba(99,102,241,0.30);
+}
+.btn-course:hover{ transform: translateY(-1px); }
+
+.btn-task{
+  background: rgba(255,255,255,0.9);
+  border:1px solid rgba(229,231,235,0.9);
+}
+.btn-task:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow2);
+}
+
+/* top cards */
+.card{
+  border-radius: 22px;
+  box-shadow: var(--shadow2);
+}
+
+/* =========================
+   Study Page Premium Look
+   ========================= */
+#studyPage .study-card{
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(229,231,235,0.85);
+  box-shadow: var(--shadow);
+  border-radius: 26px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle glow */
+#studyPage .study-card::before{
+  content:"";
+  position:absolute;
+  inset:-60px;
+  background:
+    radial-gradient(320px 260px at 15% 10%, rgba(99,102,241,0.18), transparent 60%),
+    radial-gradient(320px 260px at 85% 20%, rgba(236,72,153,0.12), transparent 60%),
+    radial-gradient(320px 260px at 50% 90%, rgba(14,165,233,0.12), transparent 60%);
+  pointer-events:none;
+}
+
+#studyPage .study-card > *{ position:relative; }
+
+#studyPage .study-card h3{
+  font-family: Poppins, Inter, sans-serif;
+  letter-spacing:-0.3px;
+}
+
+#studyPage .study-input,
+#studyPage .study-select,
+#studyPage .study-textarea{
+  background: rgba(249,250,251,0.9);
+  border: 1px solid rgba(229,231,235,0.95);
+}
+
+/* Method cards more fun */
+#studyPage .method-card{
+  background: rgba(243,244,246,0.8);
+  border: 1px solid rgba(229,231,235,0.95);
+  border-radius: 18px;
+}
+#studyPage .method-card:hover{
+  box-shadow: 0 14px 30px rgba(17,24,39,0.10);
+}
+#studyPage .method-card.active{
+  background: linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+/* Timer big looks premium */
+#studyPage .timer-big{
+  font-family: Poppins, Inter, sans-serif;
+  letter-spacing: 2px;
+  font-size: 64px;
+}
+
+/* Pills */
+#studyPage .pill{
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(229,231,235,0.85);
+}
+
+/* Session items */
+#studyPage .session-item{
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(229,231,235,0.85);
+}
+
+/* Focus mode nicer */
+body.focus-mode{
+  background: radial-gradient(1200px 800px at 50% 10%, #111827 0%, #0b1220 45%, #070b14 100%);
+  color: #e5e7eb;
+}
+body.focus-mode .page.active,
+body.focus-mode .main{
+  background: transparent !important;
+}
+body.focus-mode .study-card{
+  background: rgba(17,24,39,0.55) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+body.focus-mode .study-muted{ color: rgba(229,231,235,0.7) !important; }
+body.focus-mode .pill{
+  background: rgba(17,24,39,0.55) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color:#e5e7eb !important;
+}
 
 </style>
 </head>
@@ -1361,85 +1758,162 @@ No classes scheduled
 </div>
 
 <!-- ================= STUDY ROOM PAGE ================= -->
+<!-- ================= STUDY ROOM PAGE ================= -->
 
 <div class="page" id="studyPage">
 
-<div class="courses-title">Study Room</div>
-<div class="courses-sub">
-Focus and track your study sessions
+  <div class="courses-title">Study Room</div>
+  <div class="courses-sub">Focus and track your study sessions</div>
+
+  <div class="study-layout">
+
+    <!-- LEFT -->
+    <div class="study-card">
+
+      <h3>Start a Study Session</h3>
+      <div class="study-muted">Pick a course and a method, then start focusing.</div>
+
+      <label class="study-label">Course</label>
+      <select id="studyCourse" class="study-select">
+        <option value="">Choose a course</option>
+        <option value="CS">Computer Science</option>
+        <option value="MA">Calculus I</option>
+        <option value="EN">English Composition</option>
+      </select>
+
+      <div class="study-row">
+        <div class="study-field">
+          <label class="study-label">Session Goal (optional)</label>
+          <input id="studyGoal" class="study-input" placeholder="e.g., Finish Chapter 2 summary">
+        </div>
+
+        <div class="study-field">
+          <label class="study-label">Focus Mode</label>
+          <button class="btn btn-task btn-wide" onclick="toggleFocusMode()">Toggle Focus Mode</button>
+        </div>
+      </div>
+
+      <label class="study-label">Study Method</label>
+
+      <div class="methods-grid">
+        <div class="method-card" onclick="selectMethod(this,25,'Pomodoro')">
+          <b>Pomodoro</b>
+          <p>25 min work, 5 min break</p>
+        </div>
+
+        <div class="method-card" onclick="selectMethod(this,90,'Deep Work')">
+          <b>Deep Work</b>
+          <p>90 min focused session</p>
+        </div>
+
+        <div class="method-card" onclick="selectMethod(this,20,'Spaced Review')">
+          <b>Spaced Review</b>
+          <p>20 min review cycles</p>
+        </div>
+
+        <div class="method-card" onclick="selectMethod(this,30,'Active Recall')">
+          <b>Active Recall</b>
+          <p>30 min practice</p>
+        </div>
+      </div>
+
+      <div class="study-actions" style="margin-top:18px;">
+        <button class="btn btn-course btn-wide" onclick="startTimer()">
+          ▶ Start Session
+        </button>
+        <button class="btn btn-secondary btn-wide" onclick="pauseResumeTimer()" id="pauseBtn">
+          ⏸ Pause
+        </button>
+        <button class="btn btn-danger btn-wide" onclick="endSession(false)">
+          ⛔ End Session
+        </button>
+      </div>
+
+
+      <div class="mini-section">
+        <h3 style="margin:0 0 10px 0;">Quick Notes</h3>
+        <textarea id="studyNotes" class="study-textarea" placeholder="Write notes here... (auto-saved)"></textarea>
+        <div class="study-row" style="margin-top:10px;">
+          <button class="btn btn-task" onclick="clearNotes()">Clear Notes</button>
+          <div class="study-muted" id="notesStatus">Saved</div>
+        </div>
+      </div>
+
+      <div class="mini-section">
+  <h3 style="margin:0 0 8px 0;">🧠 Brain Booster</h3>
+  <div class="study-muted">Memorize the numbers, then repeat them.</div>
+
+  <div id="memoryBox"
+       style="margin-top:10px;
+              padding:14px;
+              background:#f3f4f6;
+              border-radius:14px;
+              text-align:center;
+              font-size:22px;
+              letter-spacing:6px;">
+    —
+  </div>
+
+  <input id="memoryInput"
+         class="study-input"
+         placeholder="Type the numbers"
+         style="margin-top:10px;">
+
+  <div class="study-row" style="margin-top:10px;">
+    <button class="btn btn-task" onclick="startMemoryGame()">Start</button>
+    <button class="btn btn-course" onclick="checkMemory()">Check</button>
+  </div>
+
+  <div class="study-muted" id="memoryResult" style="margin-top:6px;"></div>
 </div>
 
-<div style="display:flex;gap:30px;flex-wrap:wrap;">
 
-<!-- LEFT SIDE -->
-<div class="box" style="flex:2;min-width:400px;">
+    </div>
 
-<h3>Start a Study Session</h3>
+    <!-- RIGHT -->
+    <div class="study-card">
 
-<!-- Select Course -->
-<p style="margin-top:20px;">Select Course</p>
-<select id="studyCourse" class="search-box">
-<option value="">Choose a course</option>
-<option value="CS">Computer Science</option>
-<option value="MA">Calculus I</option>
-<option value="EN">English Composition</option>
-</select>
+      <div class="timer-wrap">
+        <h3 style="margin:0;">Session Timer</h3>
+        <div class="study-muted" id="sessionMeta">No session running</div>
 
-<!-- Study Methods -->
-<p style="margin-top:20px;">Study Method</p>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:10px;">
-
-<div class="method-card" onclick="selectMethod(this,25)">
-<b>Pomodoro</b>
-<p>25 min work, 5 min break</p>
+        <h1 id="timerDisplay" class="timer-big">00:00</h1>
+        <div style="margin-top:12px;">
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b7280;margin-bottom:6px;">
+    <span>Session progress</span>
+    <span id="sessionPercent">0%</span>
+  </div>
+  <div style="height:10px;background:rgba(229,231,235,0.8);border-radius:999px;overflow:hidden;">
+    <div id="sessionBar" style="height:100%;width:0%;background:linear-gradient(135deg,#6366f1,#8b5cf6);"></div>
+  </div>
 </div>
 
-<div class="method-card" onclick="selectMethod(this,90)">
-<b>Deep Work</b>
-<p>90 min focused session</p>
-</div>
 
-<div class="method-card" onclick="selectMethod(this,20)">
-<b>Spaced Review</b>
-<p>20 min review cycles</p>
-</div>
+        <div class="timer-pill">
+          <div class="pill" id="pillCourse">Course: —</div>
+          <div class="pill" id="pillMethod">Method: —</div>
+          <div class="pill" id="pillGoal">Goal: —</div>
+        </div>
 
-<div class="method-card" onclick="selectMethod(this,30)">
-<b>Active Recall</b>
-<p>30 min practice</p>
-</div>
+        <div class="mini-section" style="text-align:left;">
+          <h3 style="margin:0 0 10px 0;">Recent Sessions</h3>
+          <div class="study-muted">Automatically saved on completion.</div>
+          <div class="session-list" id="sessionList"></div>
+        </div>
+      </div>
 
-</div>
+    </div>
 
-<button class="btn btn-course" style="margin-top:25px;width:100%;" onclick="startTimer()">
-▶ Start Studying
-</button>
+  </div>
 
 </div>
 
-<!-- RIGHT SIDE TIMER -->
-<div class="box" style="flex:1;min-width:300px;text-align:center;">
-
-<h3>Focus Mode</h3>
-
-<h1 id="timerDisplay" style="font-size:48px;margin-top:30px;">
-00:00
-</h1>
-
-<button class="btn btn-task" style="margin-top:20px;width:100%;" onclick="stopTimer()">
-End Session
-</button>
-
-</div>
-
-</div>
-
-</div>
 
 
 <script>
-  
+
+
+
 
 document.getElementById("date").innerText =
 new Date().toDateString()
@@ -1823,7 +2297,14 @@ document.addEventListener("DOMContentLoaded", () => {
     updateWeek();
     populateScheduleCourses();
     generateCalendar(currentMonth, currentYear);
+
+    // NEW: Study page extras
+    loadNotes();
+    setupNotesAutosave();
+    renderSessionList();
+    updateStudyHoursFromSessions();
 });
+
 
 document.addEventListener("click", function(e){
   if(e.target.classList.contains("color-option")){
@@ -1879,9 +2360,14 @@ document.getElementById("studyPage").classList.add("active");
 
 
 let selectedMinutes = 0;
+let selectedMethodName = "";
 let timerInterval;
 let totalSeconds = 0;
+let isPaused = false;
+
+let sessionStartTime = null;
 let notifications = [];
+
 
 /* Toggle panel */
 document.querySelector(".bottom .menu-item").addEventListener("click", ()=>{
@@ -2009,11 +2495,14 @@ function markAllRead(){
 }
 
 
-function selectMethod(card, minutes){
+function selectMethod(card, minutes, methodName){
   document.querySelectorAll(".method-card").forEach(c => c.classList.remove("active"));
   card.classList.add("active");
   selectedMinutes = minutes;
+  selectedMethodName = methodName || "";
+  updateStudyPills();
 }
+
 
 function addTimeSlot(){
   const container = document.getElementById("scheduleContainer");
@@ -2050,27 +2539,236 @@ function removeTimeSlot(btn){
 
 function startTimer(){
 
-if(selectedMinutes === 0){
-alert("Please select a study method");
-return;
+  // update pills (course/goal/method)
+  updateStudyPills();
+
+  const course = document.getElementById("studyCourse").value;
+  const goal = document.getElementById("studyGoal").value.trim();
+
+  if(course === ""){
+    alert("Please select a course");
+    return;
+  }
+
+  if(selectedMinutes === 0){
+    alert("Please select a study method");
+    return;
+  }
+
+  // reset
+  clearInterval(timerInterval);
+  isPaused = false;
+
+  totalSeconds = selectedMinutes * 60;
+  sessionStartTime = Date.now();
+
+  document.getElementById("sessionMeta").innerText = "Session running...";
+
+  // show goal even if empty
+  const pillGoal = document.getElementById("pillGoal");
+  if(pillGoal) pillGoal.innerText = "Goal: " + (goal ? goal : "—");
+
+  updateDisplay();
+
+  timerInterval = setInterval(tick, 1000);
 }
 
-totalSeconds = selectedMinutes * 60;
-
-updateDisplay();
-
-timerInterval = setInterval(() => {
-totalSeconds--;
-
-updateDisplay();
-
-if(totalSeconds <= 0){
-clearInterval(timerInterval);
-alert("Session Complete 🎉");
+function toggleFocusMode(){
+  document.body.classList.toggle("focus-mode");
 }
 
-},1000);
+function updateStudyPills(){
+  const c = document.getElementById("studyCourse")?.value || "";
+  const goal = document.getElementById("studyGoal")?.value || "";
+
+  const courseName =
+    c === "CS" ? "Computer Science" :
+    c === "MA" ? "Calculus I" :
+    c === "EN" ? "English Composition" : "—";
+
+  const safeGoal = goal.trim() ? goal.trim() : "—";
+  const safeMethod = selectedMethodName ? selectedMethodName : "—";
+
+  const pillCourse = document.getElementById("pillCourse");
+  const pillMethod = document.getElementById("pillMethod");
+  const pillGoal = document.getElementById("pillGoal");
+
+  if(pillCourse) pillCourse.innerText = "Course: " + courseName;
+  if(pillMethod) pillMethod.innerText = "Method: " + safeMethod;
+  if(pillGoal) pillGoal.innerText = "Goal: " + safeGoal;
 }
+
+function pauseResumeTimer(){
+  if(!timerInterval && totalSeconds <= 0) return;
+
+  const btn = document.getElementById("pauseBtn");
+
+  if(isPaused){
+    // resume
+    isPaused = false;
+    if(btn) btn.innerText = "⏸ Pause";
+    timerInterval = setInterval(tick, 1000);
+    document.getElementById("sessionMeta").innerText = "Session running...";
+  }else{
+    // pause
+    isPaused = true;
+    if(btn) btn.innerText = "▶ Resume";
+    clearInterval(timerInterval);
+    document.getElementById("sessionMeta").innerText = "Paused";
+  }
+}
+
+function tick(){
+  if(totalSeconds <= 0){
+    clearInterval(timerInterval);
+    endSession(true);
+    return;
+  }
+  totalSeconds--;
+  updateDisplay();
+}
+
+function endSession(completed){
+  clearInterval(timerInterval);
+  isPaused = false;
+
+  const pauseBtn = document.getElementById("pauseBtn");
+  if(pauseBtn) pauseBtn.innerText = "⏸ Pause";
+
+  // save session if it actually started
+  if(sessionStartTime){
+    const durationMin = Math.round((Date.now() - sessionStartTime) / 60000);
+
+    const courseVal = document.getElementById("studyCourse")?.value || "";
+    const goal = document.getElementById("studyGoal")?.value || "";
+    const courseName =
+      courseVal === "CS" ? "Computer Science" :
+      courseVal === "MA" ? "Calculus I" :
+      courseVal === "EN" ? "English Composition" : "Unknown";
+
+    if(completed){
+      saveSession({
+        at: new Date().toISOString(),
+        minutesPlanned: selectedMinutes,
+        minutesActual: Math.max(1, durationMin),
+        course: courseName,
+        method: selectedMethodName || "Unknown",
+        goal: goal.trim() || "",
+        status: "Completed"
+      });
+      alert("Session Complete 🎉");
+    }else{
+      // optional: save ended sessions too (comment this out if you don't want)
+      saveSession({
+        at: new Date().toISOString(),
+        minutesPlanned: selectedMinutes,
+        minutesActual: Math.max(1, durationMin),
+        course: courseName,
+        method: selectedMethodName || "Unknown",
+        goal: goal.trim() || "",
+        status: "Ended"
+      });
+    }
+  }
+
+  // reset timer UI
+  totalSeconds = 0;
+  sessionStartTime = null;
+  document.getElementById("timerDisplay").innerText = "00:00";
+  document.getElementById("sessionMeta").innerText = "No session running";
+  updateStudyPills();
+  const bar = document.getElementById("sessionBar");
+const label = document.getElementById("sessionPercent");
+if(bar) bar.style.width = "0%";
+if(label) label.innerText = "0%";
+
+
+  // update dashboard hours
+  updateStudyHoursFromSessions();
+  renderSessionList();
+}
+
+function saveSession(session){
+  const key = "studyhub_sessions";
+  const old = JSON.parse(localStorage.getItem(key) || "[]");
+  old.unshift(session);
+  localStorage.setItem(key, JSON.stringify(old.slice(0, 10))); // keep last 10
+}
+
+function renderSessionList(){
+  const el = document.getElementById("sessionList");
+  if(!el) return;
+
+  const sessions = JSON.parse(localStorage.getItem("studyhub_sessions") || "[]");
+  el.innerHTML = "";
+
+  if(sessions.length === 0){
+    el.innerHTML = `<div class="study-muted">No sessions yet.</div>`;
+    return;
+  }
+
+  sessions.slice(0,5).forEach(s=>{
+    const d = new Date(s.at);
+    const when = d.toLocaleString("en-US", { weekday:"short", month:"short", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+
+    const div = document.createElement("div");
+    div.className = "session-item";
+    div.innerHTML = `
+      <div>
+        <b>${s.course}</b>
+        <small>${s.method}${s.goal ? " • " + s.goal : ""}</small>
+      </div>
+      <div style="text-align:right;">
+        <b>${s.minutesActual}m</b>
+        <small>${s.status} • ${when}</small>
+      </div>
+    `;
+    el.appendChild(div);
+  });
+}
+
+function updateStudyHoursFromSessions(){
+  const sessions = JSON.parse(localStorage.getItem("studyhub_sessions") || "[]");
+  const totalMin = sessions.reduce((sum, s)=> sum + (Number(s.minutesActual)||0), 0);
+  const hours = (totalMin/60);
+  const label = hours < 1 ? `${totalMin}m` : `${hours.toFixed(1)}h`;
+
+  const studyHoursEl = document.getElementById("studyHours");
+  if(studyHoursEl) studyHoursEl.innerText = label;
+}
+
+/* Notes */
+function loadNotes(){
+  const notes = localStorage.getItem("studyhub_notes") || "";
+  const area = document.getElementById("studyNotes");
+  if(area) area.value = notes;
+}
+
+function setupNotesAutosave(){
+  const area = document.getElementById("studyNotes");
+  const status = document.getElementById("notesStatus");
+  if(!area) return;
+
+  let t;
+  area.addEventListener("input", ()=>{
+    if(status) status.innerText = "Saving...";
+    clearTimeout(t);
+    t = setTimeout(()=>{
+      localStorage.setItem("studyhub_notes", area.value);
+      if(status) status.innerText = "Saved";
+    }, 350);
+  });
+}
+
+function clearNotes(){
+  const area = document.getElementById("studyNotes");
+  if(!area) return;
+  area.value = "";
+  localStorage.setItem("studyhub_notes", "");
+  const status = document.getElementById("notesStatus");
+  if(status) status.innerText = "Saved";
+}
+
 
 function stopTimer(){
 clearInterval(timerInterval);
@@ -2078,15 +2776,26 @@ document.getElementById("timerDisplay").innerText = "00:00";
 }
 
 function updateDisplay(){
-let minutes = Math.floor(totalSeconds / 60);
-let seconds = totalSeconds % 60;
+  let minutes = Math.floor(totalSeconds / 60);
+  let seconds = totalSeconds % 60;
 
-if(seconds < 10) seconds = "0" + seconds;
-if(minutes < 10) minutes = "0" + minutes;
+  if(seconds < 10) seconds = "0" + seconds;
+  if(minutes < 10) minutes = "0" + minutes;
 
-document.getElementById("timerDisplay").innerText =
-minutes + ":" + seconds;
+  document.getElementById("timerDisplay").innerText = minutes + ":" + seconds;
+
+  // NEW: progress bar
+  if(selectedMinutes > 0){
+    const total = selectedMinutes * 60;
+    const done = Math.max(0, total - totalSeconds);
+    const pct = Math.min(100, Math.round((done / total) * 100));
+    const bar = document.getElementById("sessionBar");
+    const label = document.getElementById("sessionPercent");
+    if(bar) bar.style.width = pct + "%";
+    if(label) label.innerText = pct + "%";
+  }
 }
+
 
 
 async function uploadSyllabus(){
@@ -2255,6 +2964,40 @@ function showDayTasks(date){
       + "</div>";
   });
 }
+let memorySequence = "";
+
+function startMemoryGame(){
+  memorySequence = "";
+  document.getElementById("memoryInput").value = "";
+  document.getElementById("memoryResult").innerText = "";
+
+  // generate 4 random digits
+  for(let i=0;i<4;i++){
+    memorySequence += Math.floor(Math.random()*9);
+  }
+
+  const box = document.getElementById("memoryBox");
+  box.innerText = memorySequence;
+
+  // hide after 2 seconds
+  setTimeout(()=>{
+    box.innerText = "••••";
+  }, 2000);
+}
+
+function checkMemory(){
+  const input = document.getElementById("memoryInput").value.trim();
+  const result = document.getElementById("memoryResult");
+
+  if(input === memorySequence){
+    result.innerText = "🔥 Correct! Brain warmed up.";
+    result.style.color = "#16a34a";
+  }else{
+    result.innerText = "❌ Try again – focus!";
+    result.style.color = "#dc2626";
+  }
+}
+
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
